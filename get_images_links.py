@@ -186,5 +186,5 @@ if __name__ == '__main__':
     images_links = (get_images_links(CONTRACTS))
     print(len(images_links))
     print(set([x[1] for x in images_links]))
-    with open('data/images_links.json', 'w') as f:
-        json.dump(images_links, f)
+    with open('data/images_links_old.json', 'w') as f:
+        json.dump(images_links, f, indent=2)

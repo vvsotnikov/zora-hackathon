@@ -1,0 +1,23 @@
+version: '3'
+services:
+  zora-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    ports:
+      - "8000:8000"
+    image: us-east1-docker.pkg.dev/light-legend-353008/zora-hackathon-images/zora-server:latest
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [ gpu ]
+
+  zora-front:
+    build:
+      context: .
+      dockerfile: Dockerfile.front
+    ports:
+      - "8501:8501"
+    image: us-east1-docker.pkg.dev/light-legend-353008/zora-hackathon-images/zora-front:latest

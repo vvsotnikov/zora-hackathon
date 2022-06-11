@@ -1,3 +1,4 @@
+import logging
 import os
 import pickle
 
@@ -11,9 +12,10 @@ from tqdm import tqdm
 class ImageSearcher:
     def __init__(self, model_name='ViT-B/32'):
         self.device = "cuda" if torch.cuda.is_available() else 'cpu'
+        logging.info('Starting the model loading process')
         self.model, self.preprocess = clip.load(model_name,
                                                 device=self.device)
-
+        logging.info('Model loading process finished')
         self.image_features, self.image_links = self._load_image_index()
 
     def _generate_image_index(self):

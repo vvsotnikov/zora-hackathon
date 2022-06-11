@@ -9,7 +9,7 @@ from tqdm import tqdm
 
 
 def load_links():
-    with open('data/images_links.json', 'r') as f:
+    with open('data/images_links_old.json', 'r') as f:
         links = json.load(f)
     return links
 
