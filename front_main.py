@@ -177,11 +177,8 @@ search_text_input = col1.text_input('NFT image search by text', help='Enter your
 if search_text_input:
     text_search()
 
-search_image_input = col1.file_uploader('NFT image search by image', type=['png', 'jpg', 'jpeg'],
+search_image_input = col2.file_uploader('NFT image search by image', type=['png', 'jpg', 'jpeg'],
                                         help='Load your NFT image to find NFTs with simmilar images')
 if search_image_input:
     image_search()
 
-col2.text_input('Generate NFT by owner address', help='Enter your ETH-chain NFT owner address to generate meta-NFT ',
-                placeholder="0x0000000000000000000000000000000000000000")
-col2.button('Generate')
