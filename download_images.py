@@ -17,10 +17,11 @@ def download_image(link_mimetype):
     link, mimetype = link_mimetype
     try:
         path = link_mimetype_to_path(link_mimetype)
-        urllib.request.urlretrieve(
-            link,
-            path)
-        time.sleep(1)
+        if not os.path.exists(path):
+            urllib.request.urlretrieve(
+                link,
+                path)
+            time.sleep(1)
     except Exception as e:
         print(e)
         print(link)
