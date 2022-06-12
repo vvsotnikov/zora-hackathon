@@ -58,7 +58,20 @@ class ImageSearcher:
             text_features = self.model.encode_text(text)
         similarity = (100.0 * self.image_features @ text_features.T.cpu()
                       ).cpu().numpy()
-        similarity = similarity.squeeze().argsort()[::-1][:5]
+        similarity = similarity.squeeze().argsort()[::-1][:6]
+        return [{'contract': self.nft_index[self.image_links[i]][0],
+                 'token_id': self.nft_index[self.image_links[i]][1]}
+                for i in similarity]
+
+    def search_image(self, image):
+        image = (self.preprocess(image)
+                 .unsqueeze(0)
+                 .to(self.device))
+        with torch.no_grad():
+            image_features = self.model.encode_image(image)
+        similarity = (100.0 * self.image_features @ image_features.T.cpu()
+                      ).cpu().numpy()
+        similarity = similarity.squeeze().argsort()[::-1][:6]
         return [{'contract': self.nft_index[self.image_links[i]][0],
                  'token_id': self.nft_index[self.image_links[i]][1]}
                 for i in similarity]

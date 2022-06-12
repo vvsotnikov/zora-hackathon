@@ -60,18 +60,16 @@ if __name__ == '__main__':
                           'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.61 Safari/537.36')]
     urllib.request.install_opener(opener)
     links = load_links()
-    links = {contract: [x for x in nft_list
-                        if
-                        # x[1] in {'image/png', 'image/jpeg', 'image/jpg'} and
-                        x[0].startswith('http')
-                        and not os.path.exists(link_mimetype_to_path(x[:2]))]
+    links = {contract: [x for x in nft_list if x[0].startswith('http')]
              for contract, nft_list in links.items()}
     links = {contract: nft_list[:15] for contract, nft_list in links.items()}
     links = {contract: [[link.replace('/ipfs/ipfs/', '/ipfs/'), mime, nft_id]
                         for link, mime, nft_id in nft_list] for contract, nft_list in
              links.items()}
-    print(sum(len(nft_list) for nft_list in links.values()))
     nft_index = build_inverse_index(links)
     with open('data/nft_index.json', 'w') as f:
-        json.dump(nft_index, f)
+        json.dump(nft_index, f, indent=2)
+    links = {contract: [x for x in nft_list
+                        if not os.path.exists(link_mimetype_to_path(x[:2]))]
+             for contract, nft_list in links.items()}
     download_images(links)

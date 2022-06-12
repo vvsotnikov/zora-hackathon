@@ -1,6 +1,7 @@
 from typing import List
 
-from fastapi import FastAPI
+from PIL import Image
+from fastapi import FastAPI, UploadFile, File
 
 from search import ImageSearcher
 
@@ -11,6 +12,13 @@ app.state.searcher = ImageSearcher()
 @app.get('/find_text', response_model=List[dict])
 async def find_text(query: str) -> List[dict]:
     result = app.state.searcher.search(query)
+    return result
+
+
+@app.get('/find_image', response_model=List[dict])
+async def find_image(image: UploadFile = File(...)) -> List[dict]:
+    image = Image.open(image.file)
+    result = app.state.searcher.search_image(image)
     return result
 
 
