@@ -1,3 +1,4 @@
+import requests
 import streamlit as st
 # from server_main import find_text
 from result_image_reqs import req_img_name
@@ -18,12 +19,7 @@ pl4, pl5, pl6 = st.columns(3)
 
 def text_search():
     if search_text_input:
-        search_result = [{'contract': '0x0e658736d759fac661d56e24ff265f9633cabd7a', 'token_id': '3'},    # заменить на find_text(search_text_input)
-                         {'contract': '0xe4f06476d710971139aea588002b40b95bc63ec1', 'token_id': '1'},
-                         {'contract': '0x3dd483fe3ee4693ab2ab0a2e195cb5fbbb31df5a', 'token_id': '189'},
-                         {'contract': '0xe613fb219e1a2fa28574ec544ed4bf14a773c0df', 'token_id': '5'},
-                         {'contract': '0x3dd483fe3ee4693ab2ab0a2e195cb5fbbb31df5a', 'token_id': '306'},
-                         {'contract': '0xccc441ac31f02cd96c153db6fd5fe0a2f4e6a68d', 'token_id': '1231'}]
+        search_result = requests.get(f'http://localhost:8000/find_text?query={search_text_input}').json()
 
         nft1 = req_img_name(search_result[0]["contract"], search_result[0]["token_id"])
         image1 = (
