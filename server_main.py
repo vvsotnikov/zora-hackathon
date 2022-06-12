@@ -1,7 +1,5 @@
-import logging
 from typing import List
 
-import numpy as np
 from fastapi import FastAPI
 
 from search import ImageSearcher
@@ -10,10 +8,9 @@ app = FastAPI()
 app.state.searcher = ImageSearcher()
 
 
-@app.get('/find_text', response_model=List[str])
-async def find_text(query: str) -> List[str]:
-    result = app.state.searcher.search(query).squeeze().astype(np.int32).tolist()
-    logging.info(str(result))
+@app.get('/find_text', response_model=List[dict])
+async def find_text(query: str) -> List[dict]:
+    result = app.state.searcher.search(query)
     return result
 
 
