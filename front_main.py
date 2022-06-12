@@ -19,7 +19,7 @@ pl4, pl5, pl6 = st.columns(3)
 
 def text_search():
     if search_text_input:
-        search_result = requests.get(f'http://localhost:8000/find_text?query={search_text_input}').json()
+        search_result = requests.get(f'http://zora-front:8000/find_text?query={search_text_input}').json()
 
         nft1 = req_img_name(search_result[0]["contract"], search_result[0]["token_id"])
         image1 = (
