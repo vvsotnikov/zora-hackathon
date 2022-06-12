@@ -1,6 +1,15 @@
 import json
 import requests
+import os
 
+
+
+if os.path.exists("data/api_key.txt"):
+    with open('data/api_key.txt', 'r') as f:
+        api_key = f.read()
+        headers = {'content-type': 'application/json',
+                   'X-API-KEY': api_key}
+else: headers = {'content-type': 'application/json'}
 
 
 def req_img_name(contract, tokenid):
@@ -25,8 +34,7 @@ def req_img_name(contract, tokenid):
         "operationName": "GetTokenImage"
     }
     r = requests.post(url,
-                      data=json.dumps(payload), headers={'Content-type': 'application/json'}
-                      )
+                      data=json.dumps(payload), headers=headers)
     response = json.loads(r.text)
 
     coll_name = response['data']["token"]["token"]["collectionName"]
