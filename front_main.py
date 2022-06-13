@@ -173,7 +173,7 @@ def image_search():
 
 
 search_text_input = col1.text_input('NFT image search by text', help='Enter your dark NFT fantasy here',
-                                    placeholder="pixel pirate")
+                                    placeholder="pixel art 8 bit")
 if search_text_input:
     text_search()
 
