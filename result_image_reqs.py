@@ -2,14 +2,13 @@ import json
 import requests
 import os
 
-
-
 if os.path.exists("data/api_key.txt"):
     with open('data/api_key.txt', 'r') as f:
         api_key = f.read()
         headers = {'content-type': 'application/json',
                    'X-API-KEY': api_key}
-else: headers = {'content-type': 'application/json'}
+else:
+    headers = {'content-type': 'application/json'}
 
 
 def req_img_name(contract, tokenid):
@@ -39,8 +38,10 @@ def req_img_name(contract, tokenid):
 
     coll_name = response['data']["token"]["token"]["collectionName"]
 
-    if response['data']["token"]["token"]["image"]["mediaEncoding"]:
+    if response['data']["token"]["token"]["image"]["mediaEncoding"] and requests.get(
+            response['data']["token"]["token"]["image"]["mediaEncoding"]["thumbnail"]).status_code == 200:
         image_link = response['data']["token"]["token"]["image"]["mediaEncoding"]["thumbnail"]
-    else: image_link = response['data']["token"]["token"]["image"]["url"]
+    else:
+        image_link = response['data']["token"]["token"]["image"]["url"]
 
     return coll_name, image_link
