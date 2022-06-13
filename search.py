@@ -3,11 +3,14 @@ import logging
 import os
 import pickle
 
+import PIL
 import clip
 import numpy as np
 import torch
 from PIL import Image
 from tqdm import tqdm
+
+PIL.Image.MAX_IMAGE_PIXELS = 977576000
 
 
 class ImageSearcher:
@@ -30,7 +33,7 @@ class ImageSearcher:
                     image = (self.preprocess(Image.open(f'data/images/{image_name}'))
                              .unsqueeze(0)
                              .to(self.device))
-                except OSError as e:
+                except (OSError, SyntaxError) as e:
                     print(e, image_name)
                     pbar.update()
                     continue
