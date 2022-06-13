@@ -18,7 +18,7 @@ social_md = st.markdown(
     unsafe_allow_html=True)
 metanft_colab_button = st.markdown(
     'Meta NFT Image Generator available in Colab Jupyter notebook\n\n'
-    '[![MetaNFT in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/vvsotnikov/zora-hackathon/blob/master/MetNFT.ipynb)',
+    '[![MetaNFT in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/vvsotnikov/zora-hackathon/blob/master/MetaNFT.ipynb)',
     unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
