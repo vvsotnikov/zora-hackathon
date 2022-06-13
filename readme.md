@@ -1,4 +1,5 @@
 # Zora-powered NFT AI Scanner
+MetaNFT: <a href="https://colab.research.google.com/github/vvsotnikov/zora-hackathon/blob/master/MetaNFT.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 Have you ever wanted an image search, like in Google, but for NFTs?
 Now, with Zora's API and our outstanding data science expertise, this
