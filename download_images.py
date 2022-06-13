@@ -15,6 +15,8 @@ def load_links():
 
 def download_image(link_mimetype):
     link, mimetype = link_mimetype
+    if mimetype not in {'image/png', 'image/jpeg', 'image/jpg'}:
+        return
     try:
         path = link_mimetype_to_path(link_mimetype)
         if not os.path.exists(path):
