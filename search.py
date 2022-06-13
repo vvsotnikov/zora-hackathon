@@ -14,7 +14,7 @@ PIL.Image.MAX_IMAGE_PIXELS = 977576000
 
 
 class ImageSearcher:
-    def __init__(self, model_name='ViT-B/32'):
+    def __init__(self, model_name='ViT-L/14'):
         self.device = "cuda" if torch.cuda.is_available() else 'cpu'
         logging.info('Starting the model loading process')
         self.model, self.preprocess = clip.load(model_name,
