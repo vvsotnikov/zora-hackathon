@@ -15,7 +15,7 @@ async def find_text(query: str) -> List[dict]:
     return result
 
 
-@app.get('/find_image', response_model=List[dict])
+@app.post('/find_image', response_model=List[dict])
 async def find_image(image: UploadFile = File(...)) -> List[dict]:
     image = Image.open(image.file)
     result = app.state.searcher.search_image(image)
