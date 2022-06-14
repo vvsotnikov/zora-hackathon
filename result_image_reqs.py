@@ -38,9 +38,9 @@ def req_img_name(contract, tokenid):
 
     coll_name = response['data']["token"]["token"]["collectionName"]
 
-    if response['data']["token"]["token"]["image"]["mediaEncoding"] and requests.get(
-            response['data']["token"]["token"]["image"]["mediaEncoding"]["thumbnail"]).status_code == 200:
-        image_link = response['data']["token"]["token"]["image"]["mediaEncoding"]["thumbnail"]
+    if response['data']["token"]["token"]["image"]["mediaEncoding"]:
+        image_link = response['data']["token"]["token"]["image"]["mediaEncoding"][
+            "thumbnail"]
     else:
         image_link = response['data']["token"]["token"]["image"]["url"]
 
